@@ -9,10 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/inter": "^4.5.15",
+    "@fontsource/source-code-pro": "^4.5.14",
+    "babel-plugin-styled-components": "^2.0.7",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "next": "13.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "styled-components": "^5.3.9"
   }
 }
