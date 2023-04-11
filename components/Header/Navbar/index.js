@@ -30,11 +30,11 @@ function Navbar() {
             <div className='messages-btns'>
                 <button>
                     <Close/>
-                <span>4</span>
+                <span>0</span>
                 </button>
                 <button>
                     <Message/>
-                    <span>4</span>
+                    <span>0</span>
                 </button>
             </div>
             <Seperator/>

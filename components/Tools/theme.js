@@ -11,6 +11,7 @@ export const lightThemecolor = {
     numAnswer: '#1A1A9F',
     signs: '#323940',
     undefinedString: '#323941',
+    undefinedAnswer: '#81858A',
     stringQuestion: '#9C251D',
     stringAnswer: '#B82618',
     booleanQuestion: '#201293',
@@ -22,7 +23,14 @@ export const lightThemecolor = {
     arrowQuestion: '#939394',
     arrowAnswer: '#BAB9BA',
     caretColor: '#000000',
-    ioborder: '#F1EFF0'
+    ioborder: '#F1EFF0',
+    errorBg: '#FCF0F0',
+    errorText: '#EA3323',
+    errorBorder: '#F8D8D7',
+    tagColor: '#7E1F7C',
+    attrColor: '#8F4A19',
+    attrValueColor: '#1A1AA1',
+    docType: '#C0C0C0'
 };
 
 export const darkThemecolor = {
@@ -45,9 +53,17 @@ export const darkThemecolor = {
     nullQuestion: '#9680CE',
     nullAnswer: '#81868A',
     undefinedQuestion: '#D9DAD9',
+    undefinedAnswer: '#81868A',
     arrowCursor: '#3B5BA3',
     arrowQuestion: '#939394',
     arrowAnswer: '#BABBBA',
     caretColor: '#ffffff',
-    ioborder: '#3B3B3A'
+    ioborder: '#3B3B3A',
+    errorBg: '#250201',
+    errorText: '#EF8784',
+    errorBorder: '#540C06',
+    tagColor: '#71ADD2',
+    attrColor: '#A1BAD9',
+    attrValueColor: '#E59C6F',
+    docType: '#C0C0C0'
 };

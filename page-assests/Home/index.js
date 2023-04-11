@@ -8,7 +8,7 @@ import Close from '@/components/Svg/HeaderIcons/Close';
 
 function Home() {
     const [inputItem, setInputItem] = useState('');
-    const [isString, setIsString] = useState(false);
+    const [isString, setIsString] = useState('');
     const { darkTheme, count, setBody, obj, setObj, setClearConsole, clearConsole } =
         useContext(ThemeContext);
     const theme = darkTheme ? darkThemecolor : lightThemecolor;
@@ -29,14 +29,14 @@ function Home() {
                 let resp = {
                     ques: inputItem,
                     ans: '',
-                    error: false
+                    error: false,
                 };
-
+                
                 try {
                     let res = eval(inputItem);
                     // simpRef.current.style.display = 'flex';
                     // ansRef.current.value = res;
-
+                    
                     if (typeof res === 'string') {
                         res = "'" + res + "'";
                     }
@@ -44,15 +44,43 @@ function Home() {
                     resp = {
                         ...resp,
                         ans: res,
-                        error: false
+                        error: false,
                     };
+
+                    console.log('inputItem', inputItem)
+
+                    if(res === undefined && inputItem !== '{}') {
+                        resp = {
+                            ...resp,
+                            ans: 'undefined',
+                            error: false,
+                        };
+                    } else if (res === null) {
+                        resp = {
+                            ...resp,
+                            ans: 'null',
+                            error: false,
+                        };
+                    } else if (inputItem === '[]') {
+                        resp = {
+                            ...resp,
+                            ans: '[]',
+                            error: false,
+                        }; 
+                    } else if (inputItem === '{}') {
+                        resp = {
+                            ...resp,
+                            ans: '{}',
+                            error: false,
+                        }; 
+                    }
                 } catch (error) {
                     // simpRef.current.style.display = 'flex';
                     // ansRef.current.value = error.message;
                     resp = {
                         ...resp,
-                        ans: error.message,
-                        error: true
+                        ans: error,
+                        error: true,
                     };
                 }
 
@@ -64,7 +92,8 @@ function Home() {
                 arr.push({
                     ques: '',
                     ans: '',
-                    error: false
+                    error: false,
+                    elementType: ''
                 });
                 setObj(arr);
                 setBody((prev) => prev + 1);
@@ -95,11 +124,48 @@ function Home() {
     }, [count]);
 
     useEffect(() => {
+        if(!inputItem) setIsString('')
+        const arr = [...obj]
+        
         if (!isString) {
             const firstChar = inputItem.charAt(0);
             if (firstChar === "'" || firstChar === '"') {
-                setIsString(true);
+                arr[count] = {
+                    ...arr[count],
+                    elementType: 'string'
+                };
+                setObj(arr);
+            } else if (parseInt(inputItem) || parseInt(inputItem) === 0) {
+                arr[count] = {
+                    ...arr[count],
+                    elementType: 'number'
+                };
+                setObj(arr);
+            } else if (inputItem === 'true' || inputItem === 'false') {
+                arr[count] = {
+                    ...arr[count],
+                    elementType: 'boolean'
+                };
+                setObj(arr);
+            } else if (inputItem === 'undefined') {
+                arr[count] = {
+                    ...arr[count],
+                    elementType: 'undefined'
+                };
+                setObj(arr);
+            } else if (inputItem === 'null') {
+                arr[count] = {
+                    ...arr[count],
+                    elementType: 'null'
+                };
+                setObj(arr);
+            } else if (inputItem === '[]' || inputItem === '{}') {
+                arr[count] = {
+                    ...arr[count],
+                    elementType: 'obj'
+                };
             }
+                setObj(arr);
         }
     }, [inputItem]);
 
@@ -121,25 +187,29 @@ function Home() {
                                 readOnly={count !== idx}
                                 ref={inputRef}
                                 onChange={handleChange}
-                                className={isString && 'string'}
+                                className={el.elementType}
                                 value={el.ques}
                             />
                         </div>
 
-                        {/* <div>
-                            <span>
-                                <Close />
-                            </span>
-                        </div> */}
-
                         <div
-                            className="input-element-ans"
+                            className={`input-element-ans`}
                             ref={simpRef}
-                            style={{ display: `${el.ans ? 'flex' : 'none'} ` }}>
+                            style={{ display: `${((el.ans || el.ans === 0 || el.ans === false || el.ans === undefined || el.ans === null) && !el.error) ? 'flex' : 'none'} ` }}>
                             <span>
                                 <ArrowWithDot fill={theme.arrowAnswer} />
                             </span>
-                            <input readOnly ref={ansRef} value={el.ans} />
+                            <input readOnly ref={ansRef} value={el.ans} className={el.elementType}/>
+                        </div>
+
+                        <div
+                            className={`input-element-ans ${el.error && 'error'}`}
+                            ref={simpRef}
+                            style={{ display: `${(el.error) ? 'flex' : 'none'} ` }}>
+                            <span>
+                                <Close />
+                            </span>
+                            <input readOnly ref={ansRef} value={el.ans} className={el.elementType}/>
                         </div>
                     </div>
                 ))}
