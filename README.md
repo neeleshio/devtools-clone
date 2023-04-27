@@ -10,7 +10,3 @@
 </div>
 
 ## Demo
-
-<h1 align="center">
-  <img src="https://raw.githubusercontent.com/neeleshio/Corona-Tracker/master/Sequence%20%231.gif" alt="demo" width="600">
-</h1>
