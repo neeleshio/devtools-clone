@@ -10,7 +10,7 @@ import { HomeContext, ThemeContext } from '@/components/Context/ThemeContext';
 
 export default function App({ Component, pageProps }) {
     const [darkTheme, setDarkTheme] = useState(true);
-    const [count, setBody] = useState(4);
+    const [count, setBody] = useState(1);
     const [clearConsole, setClearConsole] = useState(false);
 
     const handleTggleTheme = () => {
@@ -19,26 +19,8 @@ export default function App({ Component, pageProps }) {
 
     const [obj, setObj] = useState([
         {
-            ques: 'Who am I?',
-            ans: 'Hello! Iam Neelesh Shetty. A Frontend Development Engineer.',
-            error: false,
-            elementType: 'string'
-        },
-        {
-            ques: 'My total years of experience',
-            ans: '3.0 Yrs.',
-            error: false,
-            elementType: 'string'
-        },
-        {
-            ques: 'My skillset',
-            ans: 'JavaScript, TypeScript, ReactJS, NextJS, Redux, NodeJS, RestFul, MongoDB, Git, Aws.',
-            error: false,
-            elementType: 'string'
-        },
-        {
-            ques: 'Current company',
-            ans: 'CampK12 (EdTech)',
+            ques: 'Welcome to devtools clone',
+            ans: 'Built by Neelesh Shetty - https://neeleshio.cloud',
             error: false,
             elementType: 'string'
         },

@@ -1,14 +1,14 @@
-import React from 'react'
-import Navbar from './Navbar'
-import Toolbar from './Toolbar'
+import React from 'react';
+import Navbar from './Navbar';
+import Toolbar from './Toolbar';
 
 function Header() {
-  return (
-    <>
-        <Navbar/>
-        <Toolbar/>
-    </>
-  )
+    return (
+        <div className="ttt">
+            <Navbar />
+            <Toolbar />
+        </div>
+    );
 }
 
-export default Header
+export default Header;

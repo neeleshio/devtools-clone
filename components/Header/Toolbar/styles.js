@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const StyledToolbar = styled.div`
     background-color: ${(props) => props.theme.navBg};
@@ -43,11 +43,12 @@ export const StyledToolbar = styled.div`
             width: 100%;
             border-radius: 0px;
             border: 2px solid ${(props) => props.theme.filterBorder};
-            background-color: ${props => props.theme.bg};
+            background-color: ${(props) => props.theme.bg};
             margin: -2px 0;
             margin-left: 10px;
             padding: 0 10px;
             outline: none;
+            color: ${(props) => props.theme.textColor};
 
             &::placeholder {
                 font-family: Inter;
@@ -62,7 +63,7 @@ export const StyledToolbar = styled.div`
             cursor: pointer;
             width: 14px;
             height: 14px;
-            background-color: ${props => props.theme.bg};
+            background-color: ${(props) => props.theme.bg};
         }
     }
-`
+`;

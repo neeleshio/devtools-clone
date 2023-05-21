@@ -13,7 +13,7 @@ import { ThemeContext } from '@/components/Context/ThemeContext';
 
 function Toolbar() {
     const { handleTggleTheme } = useContext(ThemeContext);
-    const { setObj, setBody, setClearConsole } = useContext(ThemeContext);
+    const { setObj, setBody, setClearConsole, obj } = useContext(ThemeContext);
     const [filterInput, setFilterInput] = useState('');
 
     const handleClearConsole = () => {
@@ -26,6 +26,38 @@ function Toolbar() {
         setObj(arr);
         setBody(0);
         setClearConsole(true);
+    };
+
+    const handleFilterInput = (e) => {
+        const objCopy = [...obj];
+        const newCopy = [];
+
+        if (e.key === 'Enter') {
+            const searchTxt = e.target.value.toLowerCase();
+
+            objCopy.map((el, idx) => {
+                if (el.error) objCopy[idx] = { ...objCopy[idx], ans: el.ans.message };
+                console.log('objCopy', objCopy);
+                if (
+                    el.ques.toLowerCase().includes(searchTxt) ||
+                    el.ans.toLowerCase().includes(searchTxt)
+                ) {
+                    newCopy.push(el);
+                }
+            });
+
+            newCopy.push({
+                ques: '',
+                ans: '',
+                error: false,
+                elementType: ''
+            });
+        }
+
+        if (newCopy.length) {
+            setObj(newCopy);
+            setBody(newCopy.length - 1);
+        }
     };
 
     return (
@@ -54,6 +86,7 @@ function Toolbar() {
                         placeholder="Filter"
                         onChange={(e) => setFilterInput(e.target.value)}
                         value={filterInput}
+                        onKeyDown={handleFilterInput}
                     />
                     {filterInput && (
                         <button className="clear-btn" onClick={() => setFilterInput('')}>

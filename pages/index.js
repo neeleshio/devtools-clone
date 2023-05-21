@@ -1,7 +1,7 @@
-import Home from '@/page-assests/Home';
+import Console from '@/page-assests/Console';
 
-function HomeU() {
-    return <Home key={'dgdggd'} />;
+function ConsoleU() {
+    return <Console />;
 }
 
 export async function getStaticProps() {
@@ -10,4 +10,4 @@ export async function getStaticProps() {
     };
 }
 
-export default HomeU;
+export default ConsoleU;

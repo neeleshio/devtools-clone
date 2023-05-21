@@ -6,7 +6,7 @@ import ArrowWithDot from '@/components/Svg/Home/ArrowWithDot';
 import { HomeContext, ThemeContext } from '@/components/Context/ThemeContext';
 import Close from '@/components/Svg/HeaderIcons/Close';
 
-function Home() {
+function Console() {
     const [inputItem, setInputItem] = useState('');
     const [isString, setIsString] = useState('');
     const { darkTheme, count, setBody, obj, setObj, setClearConsole, clearConsole } =
@@ -29,14 +29,14 @@ function Home() {
                 let resp = {
                     ques: inputItem,
                     ans: '',
-                    error: false,
+                    error: false
                 };
-                
+
                 try {
                     let res = eval(inputItem);
                     // simpRef.current.style.display = 'flex';
                     // ansRef.current.value = res;
-                    
+
                     if (typeof res === 'string') {
                         res = "'" + res + "'";
                     }
@@ -44,35 +44,33 @@ function Home() {
                     resp = {
                         ...resp,
                         ans: res,
-                        error: false,
+                        error: false
                     };
 
-                    console.log('inputItem', inputItem)
-
-                    if(res === undefined && inputItem !== '{}') {
+                    if (res === undefined && inputItem !== '{}') {
                         resp = {
                             ...resp,
                             ans: 'undefined',
-                            error: false,
+                            error: false
                         };
                     } else if (res === null) {
                         resp = {
                             ...resp,
                             ans: 'null',
-                            error: false,
+                            error: false
                         };
                     } else if (inputItem === '[]') {
                         resp = {
                             ...resp,
                             ans: '[]',
-                            error: false,
-                        }; 
+                            error: false
+                        };
                     } else if (inputItem === '{}') {
                         resp = {
                             ...resp,
                             ans: '{}',
-                            error: false,
-                        }; 
+                            error: false
+                        };
                     }
                 } catch (error) {
                     // simpRef.current.style.display = 'flex';
@@ -80,7 +78,7 @@ function Home() {
                     resp = {
                         ...resp,
                         ans: error,
-                        error: true,
+                        error: true
                     };
                 }
 
@@ -124,9 +122,9 @@ function Home() {
     }, [count]);
 
     useEffect(() => {
-        if(!inputItem) setIsString('')
-        const arr = [...obj]
-        
+        if (!inputItem) setIsString('');
+        const arr = [...obj];
+
         if (!isString) {
             const firstChar = inputItem.charAt(0);
             if (firstChar === "'" || firstChar === '"') {
@@ -165,12 +163,12 @@ function Home() {
                     elementType: 'obj'
                 };
             }
-                setObj(arr);
+            setObj(arr);
         }
     }, [inputItem]);
 
     return (
-        <StyledHome>
+        <StyledHome id="home">
             <div className="input-cont">
                 {obj.map((el, idx) => (
                     <div
@@ -195,21 +193,42 @@ function Home() {
                         <div
                             className={`input-element-ans`}
                             ref={simpRef}
-                            style={{ display: `${((el.ans || el.ans === 0 || el.ans === false || el.ans === undefined || el.ans === null) && !el.error) ? 'flex' : 'none'} ` }}>
+                            style={{
+                                display: `${
+                                    (el.ans ||
+                                        el.ans === 0 ||
+                                        el.ans === false ||
+                                        el.ans === undefined ||
+                                        el.ans === null) &&
+                                    !el.error
+                                        ? 'flex'
+                                        : 'none'
+                                } `
+                            }}>
                             <span>
                                 <ArrowWithDot fill={theme.arrowAnswer} />
                             </span>
-                            <input readOnly ref={ansRef} value={el.ans} className={el.elementType}/>
+                            <input
+                                readOnly
+                                ref={ansRef}
+                                value={el.ans}
+                                className={el.elementType}
+                            />
                         </div>
 
                         <div
                             className={`input-element-ans ${el.error && 'error'}`}
                             ref={simpRef}
-                            style={{ display: `${(el.error) ? 'flex' : 'none'} ` }}>
+                            style={{ display: `${el.error ? 'flex' : 'none'} ` }}>
                             <span>
                                 <Close />
                             </span>
-                            <input readOnly ref={ansRef} value={el.ans} className={el.elementType}/>
+                            <input
+                                readOnly
+                                ref={ansRef}
+                                value={el.ans}
+                                className={el.elementType}
+                            />
                         </div>
                     </div>
                 ))}
@@ -218,4 +237,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Console;
