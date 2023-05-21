@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://user-images.githubusercontent.com/56342160/234777788-4e657408-c836-4649-a707-385833d62c83.png" alt="Markdownify" width="600">
+  Devtools Clone
 </h1>
 <h4 align="center">Browser devtools like Portfolio site</h4>
 <div align="center">
